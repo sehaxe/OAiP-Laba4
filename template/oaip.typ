@@ -196,6 +196,7 @@
 
 // Скриншот результата: по центру, подпись «Рис. N: …» снизу.
 #let shot(path, caption: none, width: 88%) = figure(
+  kind: "oaip",
   image(path, width: width),
   caption: caption,
 )
@@ -229,6 +230,7 @@
     body += l
   }
   figure(
+    kind: "oaip",
     block(width: 100%, fill: white, stroke: 0.7pt + luma(201), radius: 7pt,
       inset: 0pt, {
         block(fill: luma(238), radius: (top-left: 7pt, top-right: 7pt,
@@ -293,7 +295,7 @@
 
 #let flow(path, caption: none, max: 100%) = {
   let (s, nat-w) = _fit-both(path, _text-width * max, _text-height - _fig-cap)
-  figure(align(center, image(path, width: s * nat-w)), caption: caption)
+  figure(kind: "oaip", align(center, image(path, width: s * nat-w)), caption: caption)
 }
 
 // Очень широкая схема: альбомный лист, масштаб пачки сохраняется.
@@ -305,7 +307,7 @@
     let (s, nat-w) = _fit-both(path, _land-width * 0.98, _land-height - _fig-cap)
     set align(center)
     v(1fr)
-    figure(align(center, image(path, width: s * nat-w)), caption: caption)
+    figure(kind: "oaip", align(center, image(path, width: s * nat-w)), caption: caption)
     v(1fr)
   },
 )
